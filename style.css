@@ -2,7 +2,7 @@ body{
 color: white;
 }
 .calculator{
-    height: 530px;
+    height: 535px;
     width: 320px;
     /* border: 2px solid black; */
     margin-left: auto;
@@ -14,7 +14,6 @@ color: white;
 .top{
     display: flex;
     margin-left: 12px;
-    /* border: 1px solid black; */
     height:30px ;
 }
 .icon{
@@ -41,7 +40,6 @@ color: white;
 }
 .close{
     border-radius: 0 6px 0 0;
-    /* background-color: red; */
 }
 .close > .x{
     font-size: 22px;
@@ -65,11 +63,6 @@ color: white;
     margin-top: 5px;
     margin-left: 13px;
 }
-
-
-
-
-
 .input{
     height: 120px;
     width: 290px;
@@ -82,12 +75,10 @@ color: white;
 .buttons {
     height: 310px;
     width: 310px;
-    /* border: 2px solid black; */
     margin-left: auto;
     margin-right: auto;
 }
 .equation, .currentNum {
-    /* border:2px solid black; */
     width: 290px;
 }
 .equation{
@@ -97,18 +88,71 @@ color: white;
 .currentNum{
     height: 70px;
     background-color: bisque;
+
 }
-.buttons{
+.topPart, .bottom{
     display: flex;
     flex-wrap: wrap;
+    height: 186px;
+    width: 310px;
+    justify-content: space-around;
 }
-.buttons > *{
-    height: 75px;
+.bottom{
+    height: 124px;
+    display: flex;
+    margin-top: 5px;
+}
+
+.topPart > *{
+    height: 62px;
     width: 75px;
     border: 1px solid rgba(245, 245, 245, 0.192);
-    margin:0px;
-    border-radius: 8px;
+    margin: 0px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(0, 0, 0, 0.493);
+    border-radius: 8px;
+}
+.single{
+    height:124px;
+    width: 232px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0px;
+    margin-right: 0px;
+    justify-content:space-between;
+}
+.single > *{
+    height: 62px;
+    width: 75px;
+    border: 1px solid rgba(245, 245, 245, 0.192);
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    
+}
+.double{
+    height:124px;
+    width: 77px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.double > * {
+    height: 126px;
+    width: 75px;
+    border: 1px solid rgba(245, 245, 245, 0.192);
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+.buttons > * {
+    text-align: center;
+    line-height: 67px;
+    font-size: 35px;
+    font-family: 'Courier New', Courier, monospace;
+    user-select: none;
+}
+.button19{
+    line-height: 130px;
 }
