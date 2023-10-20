@@ -70,7 +70,6 @@ color: white;
     margin-right: auto;
     margin-top: 50px;
     margin-bottom: 10px;
-    background-color: grey;
 }
 .buttons {
     height: 310px;
@@ -79,16 +78,16 @@ color: white;
     margin-right: auto;
 }
 .equation, .currentNum {
+    background-color: rgba(56, 82, 72, 0.459);
     width: 290px;
 }
 .equation{
     height: 40px;
-    background-color: aliceblue;
+    border-radius:10px 10px 0 0;
 }
 .currentNum{
     height: 70px;
-    background-color: bisque;
-
+    border-radius:0 0 10px 10px;
 }
 .topPart, .bottom{
     display: flex;
