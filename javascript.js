@@ -17,6 +17,7 @@ body.appendChild(buttonLayout);
 let inputNum = [];
 let outputNum = [];
 let sum;
+let newLine = [1];
 
 
 //plus button
@@ -29,7 +30,9 @@ plus.innerHTML = `plus`;
 plus.addEventListener(`click`, function(){
     if(outputNum.length === 0){
     outputNum.push(Number(input.innerHTML))
-    output.innerHTML = `+`+`${outputNum}`;
+    output.innerHTML = `${outputNum}` + `+`;
+    input.innerHTML = `${outputNum}`;
+    newLine = [1];
 }
 else{
     inputNum.push(Number(input.innerHTML))
@@ -37,9 +40,13 @@ else{
         return num + inputNum[idx]
     })
     outputNum = [];
-    output.innerHTML = `+${sum}`
-    outputNum.push(Number(sum))
+    input.innerHTML = `${inputNum}`;
+    inputNum = [];
+    output.innerHTML = `${sum}+`
+    outputNum.push(Number(sum));
 }
+console.log(inputNum)
+return inputNum
 })
 
 
@@ -49,6 +56,11 @@ for (let i = 0; i < 10; i++){
     number.classList.add(`number${i}`)
     number.innerHTML = `${i}`;
     number.addEventListener(`click`, function(){
+        console.log(inputNum.length == 0)
+        console.log(inputNum)
+        if(newLine.length !== 0){
+        input.innerHTML = ``;
+    }
         input.innerHTML += `${i}`;
     })
     buttonLayout.appendChild(number);
@@ -77,6 +89,7 @@ del.innerHTML = `delete`;
 buttonLayout.appendChild(del)
 del.addEventListener(`click`, function(){
     inputNum = [];
+    outputNum = [];
     input.innerHTML = ``;
     output.innerHTML = ``;
 })
