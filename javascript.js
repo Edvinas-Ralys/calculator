@@ -1,27 +1,60 @@
-let input = document.querySelector(`.window`);
+let input = document.createElement(`div`);
+input.classList.add(`window`);
+
+let eq = document.createElement(`div`);
+eq.classList.add(`equation`)
+
+
+
 let body = document.querySelector(`body`);
+body.appendChild(eq)
 body.appendChild(input)
 let buttonLayout = document.createElement(`div`);
 buttonLayout.classList.add(`buttonlayout`);
 body.appendChild(buttonLayout);
 
-let calculation = [];
 
-let enter = document.createElement(`button`);
-enter.classList.add(`enter`);
-buttonLayout.appendChild(enter);
-enter.innerHTML = `enter`;
-enter.addEventListener(`click`, function(){
-    console.log(calculation)
+let inputNum = [];
+let outputNum = [];
+
+let plus = document.createElement(`button`);
+plus.classList.add(`plus`);
+buttonLayout.appendChild(plus);
+plus.innerHTML = `plus`;
+plus.addEventListener(`click`, function(){
+    if(outputNum.length === 0){
+    outputNum.push(input.innerHTML)
+    console.log(outputNum);
+    eq.innerHTML = `${outputNum}`;
+    input.innerHTML = `+`;
+}
+else{
+    inputNum.push(input.innerHTML);
+    console.log(`input num ` + inputNum);
+    console.log(`output num ` + outputNum);
+    console.log(`calculations needed`)
+}
 })
+
+let result;
+
+let equals = document.createElement(`button`);
+equals.classList.add(`equals`);
+equals.innerHTML = `=`;
+buttonLayout.appendChild(equals);
+equals.addEventListener(`click`, function(){
+    console.log(inputNum)
+})
+
 
 let del = document.createElement(`button`);
 del.classList.add(`delete`);
 del.innerHTML = `delete`;
 buttonLayout.appendChild(del)
-enter.addEventListener(`click`, function(){
+del.addEventListener(`click`, function(){
+    inputNum = [];
     input.innerHTML = ``;
-    calculation = [];
+    eq.innerHTML = ``;
 })
 
 
@@ -31,7 +64,6 @@ for (let i = 0; i < 10; i++){
     number.innerHTML = `${i}`;
     number.addEventListener(`click`, function(){
         input.innerHTML += `${i}`;
-        calculation.push(i)
     })
     buttonLayout.appendChild(number);
 }

@@ -1,7 +1,7 @@
 body{
     background-color: rgba(72, 130, 238, 0.603);
 }
-.window{
+.window, .equation{
     height: 30px;
     width: 100px;
     border: 2px solid black;
