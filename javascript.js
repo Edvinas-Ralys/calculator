@@ -39,10 +39,9 @@ else{
         return num + inputNum[idx]
     })
     outputNum = [];
-    input.innerHTML = `${inputNum}`;
     inputNum = [];
     output.innerHTML = `${sum}+`
-    outputNum.push(Number(sum));
+    input.innerHTML = `${sum}`
     newLine = 0;
     if(!output.innerHTML.includes(`+`)){
         output.innerHTML = `${outputNum}` + `+`;}
@@ -86,7 +85,7 @@ timesX.innerHTML = `x`;
 timesX.addEventListener(`click`, function(){
     if(outputNum.length === 0){
     outputNum.push(Number(input.innerHTML))
-    output.innerHTML = `${outputNum}` + `-`;
+    output.innerHTML = `${outputNum}` + `x`;
     input.innerHTML = `${outputNum}`;
     newLine = 0;
 }
@@ -101,7 +100,7 @@ else{
     outputNum = [];
     input.innerHTML = `${inputNum}`;
     inputNum = [];
-    output.innerHTML = `${sum}+`
+    output.innerHTML = `${sum}x`
     outputNum.push(Number(sum));
     newLine = 0;
 }
@@ -119,6 +118,11 @@ for (let i = 0; i < 10; i++){
             newLine = 1;
         }
         input.innerHTML += `${i}`;
+        if(output.innerHTML.includes(`=`)){
+            outputNum = []; 
+            inputNum = [];
+            output.innerHTML = ``;
+        }
     })
     buttonLayout.appendChild(number);
 }
@@ -130,22 +134,31 @@ equals.classList.add(`equals`);
 equals.innerHTML = `=`;
 buttonLayout.appendChild(equals);
 equals.addEventListener(`click`, function(){
+    if(output.innerHTML.includes(`=`)){
+        output.innerHTML = ``;
+    }
     if(output.innerHTML.includes(`+`)){
         inputNum.push(Number(input.innerHTML))
         sum = outputNum.map(function(num, idx){
             return num + inputNum[idx]
         })
-    outputNum = [];
-    inputNum = [];
-    inputNum.push(Number(sum));
     newLine = 0;
-    output.innerHTML += `${input.innerHTML}` + `=`;
+    output.innerHTML = `${Number(inputNum)}`+`+`+`${Number(outputNum)}` + `=`;
+    // outputNum = [];
+    inputNum = [];
     input.innerHTML = Number(sum);
+    inputNum.push(Number(input.innerHTML))
     console.log(inputNum);
     console.log(outputNum)
     }
-    
 })
+
+
+
+
+
+
+
 
 
 //delete button
