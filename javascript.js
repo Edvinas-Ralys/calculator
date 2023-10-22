@@ -4,8 +4,6 @@ input.classList.add(`window`);
 let output = document.createElement(`div`);
 output.classList.add(`equation`)
 
-
-
 let body = document.querySelector(`body`);
 body.appendChild(output)
 body.appendChild(input)
@@ -14,8 +12,9 @@ buttonLayout.classList.add(`buttonlayout`);
 body.appendChild(buttonLayout);
 
 input.innerHTML = `0`
-let inputNum = [];
-let outputNum = [];
+let firstNum = [];
+let secondNum = [];
+let thirdNum = [];
 let sum;
 let newLine = 2;
 
@@ -27,24 +26,26 @@ buttonLayout.appendChild(plus);
 plus.innerHTML = `+`;
 
 plus.addEventListener(`click`, function(){
-    if(outputNum.length === 0){
-    outputNum.push(Number(input.innerHTML))
-    output.innerHTML = `${outputNum}` + `+`;
-    input.innerHTML = `${outputNum}`;
+    if(secondNum.length === 0){
+    secondNum.push(Number(input.innerHTML))
+    output.innerHTML = `${secondNum}` + `+`;
+    input.innerHTML = `${secondNum}`;
     newLine = 0;
 }
 else{
-    inputNum.push(Number(input.innerHTML))
-    sum = outputNum.map(function(num, idx){
-        return num + inputNum[idx]
+    firstNum.push(Number(input.innerHTML))
+    sum = secondNum.map(function(num, idx){
+        return num + firstNum[idx]
     })
-    outputNum = [];
-    inputNum = [];
+    console.log(secondNum)
+    console.log(firstNum)
+    secondNum = [];
+    firstNum = [];
     output.innerHTML = `${sum}+`
     input.innerHTML = `${sum}`
     newLine = 0;
     if(!output.innerHTML.includes(`+`)){
-        output.innerHTML = `${outputNum}` + `+`;}
+        output.innerHTML = `${secondNum}` + `+`;}
 }
 })
 
@@ -55,25 +56,25 @@ buttonLayout.appendChild(minus);
 minus.innerHTML = `-`;
 
 minus.addEventListener(`click`, function(){
-    if(outputNum.length === 0){
-    outputNum.push(Number(input.innerHTML))
-    output.innerHTML = `${outputNum}` + `-`;
-    input.innerHTML = `${outputNum}`;
+    if(secondNum.length === 0){
+    secondNum.push(Number(input.innerHTML))
+    output.innerHTML = `${secondNum}` + `-`;
+    input.innerHTML = `${secondNum}`;
     newLine = 0;
 }
 else{
-    inputNum.push(Number(input.innerHTML))
-    sum = outputNum.map(function(num, idx){
-        return num - inputNum[idx]
+    firstNum.push(Number(input.innerHTML))
+    sum = secondNum.map(function(num, idx){
+        return num - firstNum[idx]
     })
-    outputNum = [];
-    input.innerHTML = `${inputNum}`;
-    inputNum = [];
+    secondNum = [];
+    input.innerHTML = `${firstNum}`;
+    firstNum = [];
     output.innerHTML = `${sum}-`
-    outputNum.push(Number(sum));
+    secondNum.push(Number(sum));
     newLine = 0;
     if(!output.innerHTML.includes(`-`)){
-        output.innerHTML = `${outputNum}` + `-`;}
+        output.innerHTML = `${secondNum}` + `-`;}
 }
 })
 
@@ -83,31 +84,44 @@ timesX.classList.add(`times`);
 buttonLayout.appendChild(timesX);
 timesX.innerHTML = `x`;
 timesX.addEventListener(`click`, function(){
-    if(outputNum.length === 0){
-    outputNum.push(Number(input.innerHTML))
-    output.innerHTML = `${outputNum}` + `x`;
-    input.innerHTML = `${outputNum}`;
+    if(secondNum.length === 0){
+    secondNum.push(Number(input.innerHTML))
+    output.innerHTML = `${secondNum}` + `x`;
+    input.innerHTML = `${secondNum}`;
     newLine = 0;
 }
 else if(!output.innerHTML.includes(`x`)){
-    output.innerHTML = `${outputNum}` + `x`;
+    output.innerHTML = `${secondNum}` + `x`;
 }
 else{
-    inputNum.push(Number(input.innerHTML))
-    sum = outputNum.map(function(num, idx){
-        return num * inputNum[idx]
+    firstNum.push(Number(input.innerHTML))
+    sum = secondNum.map(function(num, idx){
+        return num * firstNum[idx]
     })
-    outputNum = [];
-    input.innerHTML = `${inputNum}`;
-    inputNum = [];
+    secondNum = [];
+    input.innerHTML = `${firstNum}`;
+    firstNum = [];
     output.innerHTML = `${sum}x`
-    outputNum.push(Number(sum));
+    secondNum.push(Number(sum));
     newLine = 0;
 }
 })
 
 
-// numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+// numbers - probably finished
 for (let i = 0; i < 10; i++){
     let number = document.createElement(`button`)
     number.classList.add(`number${i}`)
@@ -117,58 +131,59 @@ for (let i = 0; i < 10; i++){
             input.innerHTML = ``;
             newLine = 1;
         }
+        if(input.innerHTML === `0`){
+            input.innerHTML = ``
+        }
         input.innerHTML += `${i}`;
         if(output.innerHTML.includes(`=`)){
-            outputNum = []; 
-            inputNum = [];
+            secondNum = []; 
+            firstNum = [];
             output.innerHTML = ``;
         }
     })
     buttonLayout.appendChild(number);
 }
 
-
-// equals button
+// equals button - probably finished
 let equals = document.createElement(`button`);
 equals.classList.add(`equals`);
 equals.innerHTML = `=`;
 buttonLayout.appendChild(equals);
 equals.addEventListener(`click`, function(){
     if(output.innerHTML.includes(`=`)){
-        output.innerHTML = ``;
-    }
-    if(output.innerHTML.includes(`+`)){
-        inputNum.push(Number(input.innerHTML))
-        sum = outputNum.map(function(num, idx){
-            return num + inputNum[idx]
+        secondNum = [];
+        secondNum.push(Number(input.innerHTML))
+        sum = secondNum.map(function(num, idx){
+            return num + thirdNum[idx]
         })
-    newLine = 0;
-    output.innerHTML = `${Number(inputNum)}`+`+`+`${Number(outputNum)}` + `=`;
-    // outputNum = [];
-    inputNum = [];
-    input.innerHTML = Number(sum);
-    inputNum.push(Number(input.innerHTML))
-    console.log(inputNum);
-    console.log(outputNum)
+        newLine = 0;
+        output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(thirdNum)}` + `=`;
+        input.innerHTML = Number(sum);
     }
-})
+    if(output.innerHTML.includes(`+`) && !output.innerHTML.includes(`=`)){
+        firstNum.push(Number(input.innerHTML))
+        sum = secondNum.map(function(num, idx){
+            return num + firstNum[idx]
+        })
+        thirdNum.push(Number(input.innerHTML))
+        newLine = 0;
+        output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(firstNum)}` + `=`;
+        firstNum = [];
+        input.innerHTML = Number(sum);
+        firstNum.push(Number(input.innerHTML))
+        }
+    }
+)
 
-
-
-
-
-
-
-
-
-//delete button
+//delete button - probably finished
 let del = document.createElement(`button`);
 del.classList.add(`delete`);
 del.innerHTML = `delete`;
 buttonLayout.appendChild(del)
 del.addEventListener(`click`, function(){
-    inputNum = [];
-    outputNum = [];
+    firstNum = [];
+    secondNum = [];
+    thirdNum = [];
     input.innerHTML = `0`;
     output.innerHTML = ``
     newLine = 0;
