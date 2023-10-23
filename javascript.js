@@ -17,6 +17,7 @@ let secondNum = [];
 let thirdNum = [];
 let sum;
 let newLine = 2;
+let newPlus = 1;
 
 
 //plus button
@@ -32,20 +33,25 @@ plus.addEventListener(`click`, function(){
     input.innerHTML = `${secondNum}`;
     newLine = 0;
 }
-else{
+else if(newPlus === 1){
+    firstNum = [];
     firstNum.push(Number(input.innerHTML))
     sum = secondNum.map(function(num, idx){
         return num + firstNum[idx]
     })
-    console.log(secondNum)
-    console.log(firstNum)
     secondNum = [];
     firstNum = [];
+    secondNum.push(Number(sum));
+    firstNum.push(Number(sum));
+    console.log(secondNum);
+    console.log(firstNum)
     output.innerHTML = `${sum}+`
     input.innerHTML = `${sum}`
     newLine = 0;
+    newPlus = 0;
     if(!output.innerHTML.includes(`+`)){
         output.innerHTML = `${secondNum}` + `+`;}
+    
 }
 })
 
@@ -68,6 +74,7 @@ else{
         return num - firstNum[idx]
     })
     secondNum = [];
+    thirdNum.push(Number(input.innerHTML))
     input.innerHTML = `${firstNum}`;
     firstNum = [];
     output.innerHTML = `${sum}-`
@@ -138,6 +145,8 @@ for (let i = 0; i < 10; i++){
         if(output.innerHTML.includes(`=`)){
             secondNum = []; 
             firstNum = [];
+            thirdNum = [];
+            newPlus = 1;
             output.innerHTML = ``;
         }
     })
@@ -166,8 +175,9 @@ equals.addEventListener(`click`, function(){
             return num + firstNum[idx]
         })
         thirdNum.push(Number(input.innerHTML))
+        console.log(thirdNum)
         newLine = 0;
-        output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(firstNum)}` + `=`;
+        output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(thirdNum)}` + `=`;
         firstNum = [];
         input.innerHTML = Number(sum);
         firstNum.push(Number(input.innerHTML))
@@ -187,4 +197,5 @@ del.addEventListener(`click`, function(){
     input.innerHTML = `0`;
     output.innerHTML = ``
     newLine = 0;
+    newPlus = 1;
 })
