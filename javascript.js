@@ -203,7 +203,7 @@ function isEqualFirstPress(operator){
     input.innerHTML = Number(sum);
     firstNum.push(Number(input.innerHTML))
     console.log(newLine)
-    }
+}
 
 
 
@@ -215,31 +215,7 @@ buttonLayout.appendChild(equals);
 equals.addEventListener(`click`, function(){
     isEqualFirstPress()    
 
-// second and following `=` presses
-//     if(output.innerHTML.includes(`=`) && output.innerHTML.includes(`+`)){
-//         secondNum = [];
-//         secondNum.push(Number(input.innerHTML))
-//         sum = secondNum.map(function(num, idx){
-//             return num + thirdNum[idx]
-//         })
-//         output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(thirdNum)}` + `=`;
-//         input.innerHTML = Number(sum);
-//         newLine = 0;
-//         newSign = 4
-//         console.log(newLine)
-//     }
-//     else if(output.innerHTML.includes(`=`) && output.innerHTML.includes(`-`)){
-//         secondNum = [];
-//         secondNum.push(Number(input.innerHTML))
-//         sum = secondNum.map(function(num, idx){
-//             return num - thirdNum[idx]
-//         })
-//         newLine = 0;
-//         newSign = 4
-//         output.innerHTML = `${Number(secondNum)}`+`-`+`${Number(thirdNum)}` + `=`;
-//         input.innerHTML = Number(sum);
-//         console.log(newLine)
-//     }
+
 
     }
 )
@@ -474,3 +450,29 @@ del.addEventListener(`click`, function(){
     //     input.innerHTML = Number(sum);
     //     firstNum.push(Number(input.innerHTML))
     //     }
+
+// second and following `=` presses
+//     if(output.innerHTML.includes(`=`) && output.innerHTML.includes(`+`)){
+//         secondNum = [];
+//         secondNum.push(Number(input.innerHTML))
+//         sum = secondNum.map(function(num, idx){
+//             return num + thirdNum[idx]
+//         })
+//         output.innerHTML = `${Number(secondNum)}`+`+`+`${Number(thirdNum)}` + `=`;
+//         input.innerHTML = Number(sum);
+//         newLine = 0;
+//         newSign = 4
+//         console.log(newLine)
+//     }
+//     else if(output.innerHTML.includes(`=`) && output.innerHTML.includes(`-`)){
+//         secondNum = [];
+//         secondNum.push(Number(input.innerHTML))
+//         sum = secondNum.map(function(num, idx){
+//             return num - thirdNum[idx]
+//         })
+//         newLine = 0;
+//         newSign = 4
+//         output.innerHTML = `${Number(secondNum)}`+`-`+`${Number(thirdNum)}` + `=`;
+//         input.innerHTML = Number(sum);
+//         console.log(newLine)
+//     }
