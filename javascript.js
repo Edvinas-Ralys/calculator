@@ -1,8 +1,10 @@
+
 let input = document.createElement(`div`);
 input.classList.add(`window`);
 
 let output = document.createElement(`div`);
 output.classList.add(`equation`)
+
 
 let body = document.querySelector(`body`);
 body.appendChild(output)
@@ -10,6 +12,11 @@ body.appendChild(input)
 let buttonLayout = document.createElement(`div`);
 buttonLayout.classList.add(`buttonlayout`);
 body.appendChild(buttonLayout);
+
+let calculator = document.querySelector(`.calculator`)
+calculator.appendChild(output)
+calculator.appendChild(input)
+calculator.appendChild(buttonLayout)
 
 input.innerHTML = `0`
 let firstNum = [];
@@ -49,7 +56,7 @@ function calculation(operator){
     if(secondNum.length === 0 || newSign === 4){
         secondNum = [];
         secondNum.push(Number(input.innerHTML))
-        output.innerHTML = `${secondNum}` + `${operator}`;
+        output.innerHTML = `${secondNum}` +` `+ `${operator}`;
         input.innerHTML = `${secondNum}`;
         newLine = 1;
         newSign = 3;
@@ -74,13 +81,13 @@ function calculation(operator){
         firstNum = [];
         secondNum.push(Number(sum));
         firstNum.push(Number(sum));
-        output.innerHTML = `${sum}`+`${operator}`
+        output.innerHTML = `${sum}`+ ` ` + `${operator}`
         input.innerHTML = `${sum}`
         newSign = 0
     }
     else if(newSign === 1){
         output.innerHTML = ``;
-        output.innerHTML = `${sum}`+`${operator}`
+        output.innerHTML = `${sum}`+` `+`${operator}`
         newLine = 1;
         newSign = 2;
     }
@@ -95,7 +102,7 @@ function calculation(operator){
         firstNum = [];
         secondNum.push(Number(sum));
         firstNum.push(Number(sum));
-        output.innerHTML = `${Number(secondNum)}+`
+        output.innerHTML = `${Number(secondNum)} +`
         input.innerHTML = `${Number(firstNum)}`
     }
 }
@@ -226,6 +233,9 @@ function isEqualFirstPress(operator){
     else if(output.innerHTML.includes(`/`)){
         operator = `/`
     }
+    if(secondNum.length === 0){
+        console.log(`empty`)
+    }
     firstNum = []
     firstNum.push(Number(input.innerHTML))
         if(operator === `+`){
@@ -248,11 +258,12 @@ function isEqualFirstPress(operator){
     thirdNum.push(Number(input.innerHTML))
     newLine = 0;
     newSign = 4
-    output.innerHTML = `${Number(secondNum)}`+`${operator}`+`${Number(thirdNum)}` + `=`;
+    output.innerHTML = `${Number(secondNum)}`+` `+`${operator}`+` `+`${Number(thirdNum)}` +` `+ `=`;
     firstNum = [];
     sum = Math.round(sum*1000)/1000
     input.innerHTML = Number(sum);
     firstNum.push(Number(input.innerHTML))
+
 
 }
 
@@ -286,7 +297,7 @@ else if(operator === `/`){
     sum = secondNum.map(function(num, idx){
         return num / thirdNum[idx]
     })}
-output.innerHTML = `${Number(secondNum)}`+`${operator}`+`${Number(thirdNum)}` + `=`;
+output.innerHTML = `${Number(secondNum)}`+` `+`${operator}`+` `+`${Number(thirdNum)}` +` `+ `=`;
 input.innerHTML = Number(sum);
 newLine = 0;
 newSign = 4
@@ -301,13 +312,13 @@ rightPart.appendChild(equals);
 equals.addEventListener(`click`, function(){
     if(!output.innerHTML.includes(`=`) && ((output.innerHTML.includes(`+`)||
     output.innerHTML.includes(`-`)||output.innerHTML.includes(`*`)||
-    output.innerHTML.includes(`/`))) ){
+    output.innerHTML.includes(`/`)))&& secondNum.length !== 0){
     isEqualFirstPress()    
     }
-    else if(output.innerHTML.includes(`=`)){
+    else if(output.innerHTML.includes(`=`)&& secondNum.length !== 0){
     isEqualSecondPress()
     }
-else{
+    else if (secondNum.length === 0 ) {
     output.innerHTML = `${input.innerHTML}=`
 }})
    
