@@ -17,6 +17,22 @@ let secondNum = [];
 let thirdNum = [];
 let sum;
 
+let operatorPart = document.createElement(`div`);
+operatorPart.classList.add(`operatorPart`)
+buttonLayout.appendChild(operatorPart)
+
+let bottomPart = document.createElement(`div`)
+bottomPart.classList.add(`bottomPart`)
+buttonLayout.appendChild(bottomPart)
+
+let numberPart = document.createElement(`div`)
+numberPart.classList.add(`numberPart`)
+bottomPart.appendChild(numberPart)
+
+let rightPart = document.createElement(`div`)
+rightPart.classList.add(`rightPart`)
+bottomPart.appendChild(rightPart)
+
 // check if user can type new line:
 // 0 - can type
 // 1 - reset inpput window and can type
@@ -87,7 +103,7 @@ function calculation(operator){
 
 let plus = document.createElement(`button`);
 plus.classList.add(`plus`);
-buttonLayout.appendChild(plus);
+operatorPart.appendChild(plus);
 plus.innerHTML = `+`;
 plus.addEventListener(`click`, function(){
     calculation(`+`)
@@ -95,7 +111,7 @@ plus.addEventListener(`click`, function(){
 
 let minus = document.createElement(`button`);
 minus.classList.add(`minus`);
-buttonLayout.appendChild(minus);
+operatorPart.appendChild(minus);
 minus.innerHTML = `-`;
 minus.addEventListener(`click`, function(){
     calculation(`-`)
@@ -103,7 +119,7 @@ minus.addEventListener(`click`, function(){
 
 let multiplication = document.createElement(`button`);
 multiplication.classList.add(`multiplication`);
-buttonLayout.appendChild(multiplication);
+operatorPart.appendChild(multiplication);
 multiplication.innerHTML = `x`;
 multiplication.addEventListener(`click`, function(){
     calculation(`*`)
@@ -111,7 +127,7 @@ multiplication.addEventListener(`click`, function(){
 
 let division = document.createElement(`button`);
 division.classList.add(`division`);
-buttonLayout.appendChild(division);
+operatorPart.appendChild(division);
 division.innerHTML = `÷`
 division.addEventListener(`click`, function(){
     calculation(`/`)
@@ -119,7 +135,7 @@ division.addEventListener(`click`, function(){
 
 let point = document.createElement(`button`);
 point.classList.add(`point`);
-buttonLayout.appendChild(point);
+numberPart.appendChild(point);
 point.innerHTML = `.`
 point.addEventListener(`click`, function(){
     if(!input.innerHTML.includes(`.`)){
@@ -130,7 +146,7 @@ point.addEventListener(`click`, function(){
 let backspaceArr = [];
 let backspace = document.createElement(`button`)
 backspace.classList.add(`backspace`)
-buttonLayout.appendChild(backspace)
+rightPart.appendChild(backspace)
 backspace.innerHTML = `⌫`;
 backspace.addEventListener(`click`, function(){
     backspaceArr = String(input.innerHTML).split(``).map(Number)
@@ -162,6 +178,7 @@ for (let i = 0; i < 10; i++){
     let number = document.createElement(`button`)
     number.classList.add(`number${i}`)
     number.innerHTML = `${i}`;
+    number.setAttribute(`style`, `order:-${i}`)
     number.addEventListener(`click`, function(){
         console.log(newLine)
         if(newLine === 1 && !input.innerHTML.includes(`.`)){
@@ -194,7 +211,7 @@ for (let i = 0; i < 10; i++){
         input.innerHTML += `${i}`;
         console.log(`no ifs`)
     })
-    buttonLayout.appendChild(number);
+    numberPart.appendChild(number);
 }
 
 
@@ -280,7 +297,7 @@ newSign = 4
 let equals = document.createElement(`button`);
 equals.classList.add(`equals`);
 equals.innerHTML = `=`;
-buttonLayout.appendChild(equals);
+rightPart.appendChild(equals);
 equals.addEventListener(`click`, function(){
     if(!output.innerHTML.includes(`=`) && ((output.innerHTML.includes(`+`)||
     output.innerHTML.includes(`-`)||output.innerHTML.includes(`*`)||
@@ -298,8 +315,8 @@ else{
 //delete button
 let del = document.createElement(`button`);
 del.classList.add(`delete`);
-del.innerHTML = `delete`;
-buttonLayout.appendChild(del)
+del.innerHTML = `C`;
+rightPart.appendChild(del)
 del.addEventListener(`click`, function(){
     firstNum = [];
     secondNum = [];

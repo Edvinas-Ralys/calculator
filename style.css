@@ -10,7 +10,68 @@ body{
 }
 
 .buttonlayout {
-    height: 150px;
-    width: 100px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 280px;
     border: 2px solid black;
+    justify-content: space-evenly;
 }
+
+.operatorPart{
+    width: 290px;
+    height: 50px;
+    display: flex;
+}
+.operatorPart > *{
+    height: 50px;
+    width: 70px;
+    font-size: 25px;
+}
+
+.rightPart{
+    height: 200px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+}
+.rightPart > *{
+    width: 70px;
+    height: 50px;
+    font-size: 32px;
+}
+.rightPart > .backspace{
+    font-size: 22px;
+}
+.rightPart > .equals{
+    height: 100px;
+    order: 1;
+}
+
+
+.bottomPart{
+    display: flex;
+}
+.numberPart{
+    display: flex;
+    flex-wrap: wrap;
+    width: 210px;
+    height: 200px;
+}
+.numberPart > *{
+    height: 50px;
+    width: 70px;
+    font-size: 32px;
+}
+.number0{
+    width: 140px;
+    order: 1;
+}
+.point{
+    order: 2;
+}
+
+
+
+
+
