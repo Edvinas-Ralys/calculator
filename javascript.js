@@ -20,7 +20,7 @@ let sum;
 // check if user can type new line:
 // 0 - can type
 // 1 - reset inpput window and can type
-let newLine = 0; 
+let newLine = 1; 
 
 
 //check if user can change operator in ouput window:
@@ -133,10 +133,27 @@ backspace.classList.add(`backspace`)
 buttonLayout.appendChild(backspace)
 backspace.innerHTML = `⌫`;
 backspace.addEventListener(`click`, function(){
-    backspaceArr.push(Number(input.innerHTML))
-    console.log(backspaceArr)
+    backspaceArr = String(input.innerHTML).split(``).map(Number)
     if(backspaceArr.length === 1 && backspaceArr[0] === 0){
         console.log(`only zero in input`)
+    }
+    else if(!output.innerHTML.includes(`=`)){
+        backspaceArr.pop()
+    }
+    input.innerHTML = ``;
+    input.innerHTML = `${backspaceArr.join(``)}`
+    if(input.innerHTML === ``){
+        input.innerHTML = `0`
+    }
+    if(output.innerHTML.includes(`=`)){
+        output.innerHTML = ``
+        firstNum = [];
+        secondNum = [];
+        thirdNum = [];
+        input.innerHTML = `0`;
+        output.innerHTML = ``
+        newLine = 1;
+        newSign = 1;
     }
 })
 
@@ -146,16 +163,25 @@ for (let i = 0; i < 10; i++){
     number.classList.add(`number${i}`)
     number.innerHTML = `${i}`;
     number.addEventListener(`click`, function(){
-        if(newLine === 1){
+        console.log(newLine)
+        if(newLine === 1 && !input.innerHTML.includes(`.`)){
             input.innerHTML = ``
             newLine = 0;
+            console.log(`1`)
+        }
+        if(newLine === 1 && output.innerHTML !== ``){
+            input.innerHTML = ``
+            newLine = 0;
+            console.log(`1`)
         }
         if(newSign === 0){
             input.innerHTML = ``
             newSign = 3
+            console.log(`3`)
         }
-        if(input.innerHTML === `0`){
+        if(input.innerHTML === `0` && input.innerHTML.includes(`.`)){
             input.innerHTML = ``
+            console.log(`5`)
         }
         if(output.innerHTML.includes(`=`) && newLine === 0){
             secondNum = []; 
@@ -166,6 +192,7 @@ for (let i = 0; i < 10; i++){
             input.innerHTML = ``
         }
         input.innerHTML += `${i}`;
+        console.log(`no ifs`)
     })
     buttonLayout.appendChild(number);
 }
@@ -176,10 +203,10 @@ function isEqualFirstPress(operator){
     {operator = `+`}
     else if(output.innerHTML.includes(`-`))
     {operator = `-`}
-    if(output.innerHTML.includes(`*`)){
+    else if(output.innerHTML.includes(`*`)){
         operator = `*`
     }
-    if(output.innerHTML.includes(`/`)){
+    else if(output.innerHTML.includes(`/`)){
         operator = `/`
     }
     firstNum = []
@@ -206,8 +233,10 @@ function isEqualFirstPress(operator){
     newSign = 4
     output.innerHTML = `${Number(secondNum)}`+`${operator}`+`${Number(thirdNum)}` + `=`;
     firstNum = [];
+    sum = Math.round(sum*1000)/1000
     input.innerHTML = Number(sum);
     firstNum.push(Number(input.innerHTML))
+
 }
 
 
@@ -253,12 +282,18 @@ equals.classList.add(`equals`);
 equals.innerHTML = `=`;
 buttonLayout.appendChild(equals);
 equals.addEventListener(`click`, function(){
-    if(!output.innerHTML.includes(`=`)){
+    if(!output.innerHTML.includes(`=`) && ((output.innerHTML.includes(`+`)||
+    output.innerHTML.includes(`-`)||output.innerHTML.includes(`*`)||
+    output.innerHTML.includes(`/`))) ){
     isEqualFirstPress()    
     }
-    else{
+    else if(output.innerHTML.includes(`=`)){
     isEqualSecondPress()
-    }})
+    }
+else{
+    output.innerHTML = `${input.innerHTML}=`
+}})
+   
 
 //delete button
 let del = document.createElement(`button`);
