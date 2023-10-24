@@ -61,22 +61,25 @@ function calculation(operator){
         newLine = 1;
         newSign = 3;
     }
-    else if(output.innerHTML.includes(`${operator}`) && newSign === 3){
+    else if(output.innerHTML.includes(`+` || `-` || `*` || `/`) && newSign === 3){
         firstNum = [];
         firstNum.push(Number(input.innerHTML))
-        if(operator === `+`){
+        if(output.innerHTML.includes(`+`)){
         sum = secondNum.map(function(num, idx){
             return num + firstNum[idx]
         })}
-        else if(operator === `-`){
+        else if(output.innerHTML.includes(`-`)){
         sum = secondNum.map(function(num, idx){
             return num - firstNum[idx]
         })}
-        else if(operator === `*`){
+        else if(output.innerHTML.includes(`*`)){
         sum = secondNum.map(function(num, idx){
             return num * firstNum[idx]
-        })   
-        }
+        })}
+        else if(output.innerHTML.includes(`/`)){
+        sum = secondNum.map(function(num, idx){
+            return num / firstNum[idx]
+        })}
         secondNum = [];
         firstNum = [];
         secondNum.push(Number(sum));
@@ -91,7 +94,7 @@ function calculation(operator){
         newLine = 1;
         newSign = 2;
     }
-    else if(newSign === 3 && !output.innerHTML.includes(`+`)){
+    else if(newSign === 3 && !output.innerHTML.includes(`+` || `-` || `*` || `/`)){
         firstNum = [];
         console.log(secondNum)
         firstNum.push(Number(input.innerHTML))
@@ -102,8 +105,10 @@ function calculation(operator){
         firstNum = [];
         secondNum.push(Number(sum));
         firstNum.push(Number(sum));
-        output.innerHTML = `${Number(secondNum)} +`
+        output.innerHTML = `${Number(secondNum)}`+` `+ `${operator}`
         input.innerHTML = `${Number(firstNum)}`
+        newLine = 1;
+        newSign = 2;
     }
 }
 
